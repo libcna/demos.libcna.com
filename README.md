@@ -17,6 +17,7 @@ WebAssembly build; úvodní stránka slouží jako jejich rozcestník.
 - **People** – `people-cna/People.html`
 - **Tamagotchi CNA** – `tamagotchi-cna/TamagotchiCna.html`
 - **Wolf CNA** – `wolf-cna/wolf-cna.html`
+- **CNA Car Simulator** – `cna-car-simulator/cna-car-simulator.html`
 
 ## Lokální spuštění
 
