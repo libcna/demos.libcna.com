@@ -18,6 +18,7 @@ WebAssembly build; úvodní stránka slouží jako jejich rozcestník.
 - **Tamagotchi CNA** – `tamagotchi-cna/TamagotchiCna.html`
 - **Wolf CNA** – `wolf-cna/wolf-cna.html`
 - **CNA Car Simulator** – `cna-car-simulator/cna-car-simulator.html`
+- **CNA Street** – `cna-street/cna-street.html`
 
 ## Lokální spuštění
 
