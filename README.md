@@ -19,6 +19,7 @@ WebAssembly build; úvodní stránka slouží jako jejich rozcestník.
 - **Wolf CNA** – `wolf-cna/wolf-cna.html`
 - **CNA Car Simulator** – `cna-car-simulator/cna-car-simulator.html`
 - **CNA Street** – `cna-street/cna-street.html`
+- **Living Room Simulator** – `living-room-simulator/living-room-simulator.html`
 
 ## Lokální spuštění
 
