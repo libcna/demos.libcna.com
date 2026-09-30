@@ -10,6 +10,7 @@ WebAssembly build; úvodní stránka slouží jako jejich rozcestník.
 - **Mesh Craft** – `mesh-craft/MeshCraft.html`
 - **2D demo** – `cna_demo_2d/cna_demo_2d.html`
 - **3D House demo** – `cna_demo_house_3d/cna_house3d_demo.html`
+- **House Simulator** – `house-simulator/index.html` (Shift přepíná walk/run)
 - **Black Pine** – `black-pine/black-pine.html`
 - **Lines CNA** – `lines-cna/winlinez_cna.html`
 - **Tamagotchi CNA** – `tamagotchi-cna/TamagotchiCna.html`
