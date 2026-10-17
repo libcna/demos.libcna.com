@@ -15,9 +15,9 @@ WebAssembly build; úvodní stránka slouží jako jejich rozcestník.
 - **Lines CNA** – `lines-cna/winlinez_cna.html`
 - **Tamagotchi CNA** – `tamagotchi-cna/TamagotchiCna.html`
 - **Wolf CNA** – `wolf-cna/wolf-cna.html`
-- **CNA Car Simulator** – `cna-car-simulator/cna-car-simulator.html`
+- **Car Simulator** – `car-simulator/car-simulator.html`
 - **Street Simulator** – `street-simulator/street-simulator.html`
-- **Living Room Simulator** – `living-room-simulator/living-room-simulator.html`
+- **Room Simulator** – `room-simulator/room-simulator.html`
 
 ## Lokální spuštění
 
