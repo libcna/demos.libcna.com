@@ -22,6 +22,7 @@ samostatný WebAssembly build; úvodní stránka slouží jako jejich rozcestní
 - **Backrooms Simulator** – `backrooms-simulator/index.html`
 - **School Simulator** – `school-simulator/index.html`
 - **Train Simulator** – `train-simulator/train-simulator.html`
+- **Museum Simulator** – `museum-simulator/cna-3d-museum.html`
 
 ## Aplikace
 
