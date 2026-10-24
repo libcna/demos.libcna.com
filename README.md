@@ -1,23 +1,30 @@
 # play.libcna.com
 
-Statický web s ukázkami postavenými nad **libcna**. Každá ukázka je samostatný
-WebAssembly build; úvodní stránka slouží jako jejich rozcestník.
+Statický web s hrami, simulátory a aplikacemi postavenými nad **libcna**, které
+se hrají přímo v prohlížeči, bez stahování a instalace. Každý titul je
+samostatný WebAssembly build; úvodní stránka slouží jako jejich rozcestník.
 
-## Ukázky
+## Hry
 
-- **CNA Craft** – `cna-craft/CnaCraft.html`
-- **CNA Examples** – `cna-examples/cna_examples.html`
-- **Mesh Craft** – `mesh-craft/MeshCraft.html`
-- **2D demo** – `cna_demo_2d/cna_demo_2d.html`
-- **3D House demo** – `cna_demo_house_3d/cna_house3d_demo.html`
-- **House Simulator** – `house-simulator/index.html` (Shift přepíná walk/run)
 - **Black Pine** – `black-pine/black-pine.html`
+- **Wolf CNA** – `wolf-cna/wolf-cna.html`
+- **CNA Craft** – `cna-craft/CnaCraft.html`
 - **Lines CNA** – `lines-cna/winlinez_cna.html`
 - **Tamagotchi CNA** – `tamagotchi-cna/TamagotchiCna.html`
-- **Wolf CNA** – `wolf-cna/wolf-cna.html`
+
+## Simulátory
+
+- **House Simulator** – `house-simulator/index.html` (Shift přepíná walk/run)
 - **Car Simulator** – `car-simulator/car-simulator.html`
 - **Street Simulator** – `street-simulator/street-simulator.html`
 - **Room Simulator** – `room-simulator/room-simulator.html`
+
+## Aplikace
+
+- **Mesh Craft** – `mesh-craft/MeshCraft.html`
+- **CNA Examples** – `cna-examples/cna_examples.html`
+- **2D Graphics** – `cna_demo_2d/cna_demo_2d.html`
+- **3D House** – `cna_demo_house_3d/cna_house3d_demo.html`
 
 ## Lokální spuštění
 

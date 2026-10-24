@@ -3,55 +3,110 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="WebAssembly demos powered by libcna.">
-    <title>libcna – play</title>
+    <meta name="description" content="Games, simulators and applications built with libcna. Play them right here in your browser, with no download or install.">
+    <title>libcna – play in your browser</title>
     <style>
       :root { color-scheme: dark; font-family: Inter, ui-sans-serif, system-ui, sans-serif; }
       * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
       body {
         margin: 0;
         min-height: 100vh;
         color: #edf3ff;
-        background: radial-gradient(circle at 15% 0%, #243b64, transparent 35rem), #0c1120;
+        background: radial-gradient(circle at 15% 0%, #243b64, transparent 35rem), radial-gradient(circle at 95% 10%, #3a2456, transparent 28rem), #0c1120;
       }
       main { width: min(1080px, calc(100% - 2.5rem)); margin: 0 auto; padding: 5rem 0; }
       .eyebrow { margin: 0 0 .75rem; color: #77b5ff; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; }
-      h1 { max-width: 12ch; margin: 0; font-size: clamp(2.8rem, 8vw, 5.5rem); line-height: .98; }
-      .intro { max-width: 42rem; margin: 1.5rem 0 3rem; color: #b8c5d9; font-size: 1.15rem; line-height: 1.65; }
+      h1 { max-width: 13ch; margin: 0; font-size: clamp(2.8rem, 8vw, 5.5rem); line-height: .98; }
+      .intro { max-width: 42rem; margin: 1.5rem 0 1.75rem; color: #b8c5d9; font-size: 1.15rem; line-height: 1.65; }
+      .perks { display: flex; flex-wrap: wrap; gap: .6rem; margin: 0 0 2.5rem; padding: 0; list-style: none; }
+      .perks li { padding: .45rem .85rem; border: 1px solid #2b3d5e; border-radius: 999px; color: #cfdbef; background: rgb(17 27 47 / .7); font-size: .92rem; font-weight: 600; }
+      .perks li::before { content: "✓ "; color: #6ee7a8; }
+      .jump { display: flex; flex-wrap: wrap; gap: .75rem; margin: 0 0 1rem; }
+      .jump a { padding: .7rem 1.2rem; border-radius: .75rem; color: #0c1120; background: #77b5ff; font-weight: 700; text-decoration: none; transition: background .18s ease; }
+      .jump a:nth-child(n+2) { color: #edf3ff; background: #1a2b49; border: 1px solid #2b3d5e; }
+      .jump a:hover, .jump a:focus-visible { background: #a5ceff; color: #0c1120; outline: none; }
+      section { margin-top: 3.5rem; scroll-margin-top: 1.5rem; }
+      .section-head { display: flex; align-items: baseline; gap: .75rem; margin: 0 0 .4rem; }
+      h2 { margin: 0; font-size: clamp(1.6rem, 4vw, 2.1rem); }
+      .count { color: #8796ad; font-weight: 600; }
+      .section-intro { margin: 0 0 1.25rem; color: #b8c5d9; line-height: 1.55; }
       .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; }
       a.card {
-        display: flex; min-height: 180px; flex-direction: column; justify-content: space-between;
+        display: flex; min-height: 190px; flex-direction: column; justify-content: space-between;
         padding: 1.5rem; border: 1px solid #2b3d5e; border-radius: 1rem; color: inherit;
         background: rgb(17 27 47 / .86); text-decoration: none; transition: transform .18s ease, border-color .18s ease, background .18s ease;
       }
       a.card:hover, a.card:focus-visible { transform: translateY(-4px); border-color: #77b5ff; background: #1a2b49; outline: none; }
-      h2 { margin: 0; font-size: 1.4rem; }
+      .tag { display: inline-block; margin-bottom: .8rem; padding: .2rem .6rem; border-radius: 999px; color: #9fd0ff; background: rgb(119 181 255 / .14); font-size: .78rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+      #simulators .tag { color: #ffd38a; background: rgb(255 191 87 / .14); }
+      #apps .tag { color: #b9f3d2; background: rgb(110 231 168 / .14); }
+      h3 { margin: 0; font-size: 1.4rem; }
       .card p { margin: .7rem 0 0; color: #b8c5d9; line-height: 1.5; }
-      .open { margin-top: 1.5rem; color: #8bc4ff; font-weight: 700; }
-      footer { margin-top: 3rem; color: #8796ad; font-size: .9rem; }
+      .play { display: inline-flex; align-self: flex-start; align-items: center; gap: .45rem; margin-top: 1.5rem; padding: .55rem 1rem; border-radius: .6rem; color: #0c1120; background: #77b5ff; font-weight: 700; transition: background .18s ease; }
+      a.card:hover .play, a.card:focus-visible .play { background: #a5ceff; }
+      .note { margin-top: 3rem; color: #8796ad; font-size: .95rem; line-height: 1.55; }
+      footer { margin-top: 1rem; color: #8796ad; font-size: .9rem; }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        a.card { transition: none; }
+        a.card:hover, a.card:focus-visible { transform: none; }
+      }
     </style>
   </head>
   <body>
     <main>
       <p class="eyebrow">play.libcna.com</p>
-      <h1>Interactive demos</h1>
-      <p class="intro">Choose one of the WebAssembly applications below. The first load may take a moment because some demos include large data files.</p>
-      <section class="grid" aria-label="Demo list">
-        <a class="card" href="cna-craft/CnaCraft.html" target="_blank" rel="noopener noreferrer"><div><h2>CNA Craft</h2><p>An interactive CNA Craft demo running directly in your browser.</p></div><span class="open">Open demo →</span></a>
-        <a class="card" href="cna-examples/cna_examples.html" target="_blank" rel="noopener noreferrer"><div><h2>CNA Examples</h2><p>A collection of examples and experiments built with libcna.</p></div><span class="open">Open demo →</span></a>
-        <a class="card" href="mesh-craft/MeshCraft.html" target="_blank" rel="noopener noreferrer"><div><h2>Mesh Craft</h2><p>A demo exploring geometry and 3D meshes.</p></div><span class="open">Open demo →</span></a>
-        <a class="card" href="cna_demo_2d/cna_demo_2d.html" target="_blank" rel="noopener noreferrer"><div><h2>2D demo</h2><p>A WebAssembly demonstration of two-dimensional rendering.</p></div><span class="open">Open demo →</span></a>
-        <a class="card" href="cna_demo_house_3d/cna_house3d_demo.html" target="_blank" rel="noopener noreferrer"><div><h2>3D House demo</h2><p>Explore a 3D house scene right in your browser.</p></div><span class="open">Open demo →</span></a>
-        <a class="card" href="house-simulator/index.html" target="_blank" rel="noopener noreferrer"><div><h2>House Simulator</h2><p>Explore a furnished house, from the basement to the attic and garden, with changing daylight and weather.</p><p><strong>Controls:</strong> WASD or arrow keys move, click to look around with the mouse, Shift switches between walk and run, and Esc opens Pause. The first load downloads a large asset package.</p></div><span class="open">Open demo →</span></a>
-        <a class="card" href="black-pine/black-pine.html" target="_blank" rel="noopener noreferrer"><div><h2>Black Pine</h2><p>An exploration and puzzle adventure across a five-act story at a mountain radio relay.</p></div><span class="open">Open demo →</span></a>
-        <a class="card" href="lines-cna/winlinez_cna.html" target="_blank" rel="noopener noreferrer"><div><h2>Lines CNA</h2><p>A classic ball-line puzzle game — build lines of five or more matching colors before the board fills.</p></div><span class="open">Open demo →</span></a>
-        <a class="card" href="tamagotchi-cna/TamagotchiCna.html" target="_blank" rel="noopener noreferrer"><div><h2>Tamagotchi CNA</h2><p>A faithful reimplementation of the 1997 virtual pet — one creature, three buttons, a tiny LCD.</p></div><span class="open">Open demo →</span></a>
-        <a class="card" href="wolf-cna/wolf-cna.html" target="_blank" rel="noopener noreferrer"><div><h2>Wolf CNA</h2><p>A retro first-person shooter prototype with true polygonal 3D rendering and multiple weapons.</p></div><span class="open">Open demo →</span></a>
-        <a class="card" href="car-simulator/car-simulator.html" target="_blank" rel="noopener noreferrer"><div><h2>Car Simulator</h2><p>Drive through the small town of Lipová with traffic, weather and a day–night cycle.</p><p><strong>Quick start:</strong> T switches to the automatic gearbox, E starts the engine, F selects Drive, R selects Reverse (when stopped), W/S accelerate and brake, A/D steer. F1 lists every control.</p></div><span class="open">Open demo →</span></a>
-        <a class="card" href="street-simulator/street-simulator.html" target="_blank" rel="noopener noreferrer"><div><h2>Street Simulator</h2><p>A realistic, procedurally generated city street with traffic, pedestrians, shadows and reflections, rendered with CNA's extended graphics layer.</p><p><strong>Note:</strong> it builds the street in your browser, so the first start takes about a minute. WASD moves, mouse looks, 1–8 jump between viewpoints, F1 toggles the overlay.</p></div><span class="open">Open demo →</span></a>
-        <a class="card" href="room-simulator/room-simulator.html" target="_blank" rel="noopener noreferrer"><div><h2>Room Simulator</h2><p>Explore a furnished 3D living room with changing daylight and weather, rendered by the original C++ application through WebGL2.</p><p><strong>Controls:</strong> WASD moves, arrow keys look around, 1–8 switch viewpoints, and F1 shows the controls. The first load downloads about 128 MiB of models.</p></div><span class="open">Open demo →</span></a>
+      <h1>Play right here in your browser</h1>
+      <p class="intro">Games, simulators and applications built with libcna, all running directly on this website. Nothing to download, nothing to install: pick one and press play.</p>
+      <ul class="perks" aria-label="What to expect">
+        <li>No install</li>
+        <li>Free to play</li>
+        <li>Runs in your browser</li>
+        <li>Keyboard and mouse</li>
+      </ul>
+      <nav class="jump" aria-label="Sections">
+        <a href="#games">▶ Games</a>
+        <a href="#simulators">Simulators</a>
+        <a href="#apps">Applications</a>
+      </nav>
+
+      <section id="games" aria-labelledby="games-title">
+        <div class="section-head"><h2 id="games-title">Games</h2><span class="count">5 titles</span></div>
+        <p class="section-intro">Adventures, shooters, puzzles and more, ready to play.</p>
+        <div class="grid">
+          <a class="card" href="black-pine/black-pine.html" target="_blank" rel="noopener noreferrer"><div><span class="tag">Adventure</span><h3>Black Pine</h3><p>An exploration and puzzle adventure across a five-act story at a mountain radio relay.</p></div><span class="play">▶ Play now</span></a>
+          <a class="card" href="wolf-cna/wolf-cna.html" target="_blank" rel="noopener noreferrer"><div><span class="tag">Shooter</span><h3>Wolf CNA</h3><p>A retro first-person shooter prototype with true polygonal 3D rendering and multiple weapons.</p></div><span class="play">▶ Play now</span></a>
+          <a class="card" href="cna-craft/CnaCraft.html" target="_blank" rel="noopener noreferrer"><div><span class="tag">Sandbox</span><h3>CNA Craft</h3><p>Explore a block world with procedurally generated terrain and a day–night cycle.</p></div><span class="play">▶ Play now</span></a>
+          <a class="card" href="lines-cna/winlinez_cna.html" target="_blank" rel="noopener noreferrer"><div><span class="tag">Puzzle</span><h3>Lines CNA</h3><p>A classic ball-line puzzle game — build lines of five or more matching colors before the board fills.</p></div><span class="play">▶ Play now</span></a>
+          <a class="card" href="tamagotchi-cna/TamagotchiCna.html" target="_blank" rel="noopener noreferrer"><div><span class="tag">Virtual pet</span><h3>Tamagotchi CNA</h3><p>A faithful reimplementation of the 1997 virtual pet — one creature, three buttons, a tiny LCD.</p></div><span class="play">▶ Play now</span></a>
+        </div>
       </section>
-      <footer>libcna WebAssembly demos</footer>
+
+      <section id="simulators" aria-labelledby="simulators-title">
+        <div class="section-head"><h2 id="simulators-title">Simulators</h2><span class="count">4 titles</span></div>
+        <p class="section-intro">Walk, drive and look around detailed 3D worlds with changing daylight and weather.</p>
+        <div class="grid">
+          <a class="card" href="house-simulator/index.html" target="_blank" rel="noopener noreferrer"><div><span class="tag">Exploration</span><h3>House Simulator</h3><p>Explore a furnished house, from the basement to the attic and garden, with changing daylight and weather.</p><p><strong>Controls:</strong> WASD or arrow keys move, click to look around with the mouse, Shift switches between walk and run, and Esc opens Pause. The first load downloads a large asset package.</p></div><span class="play">▶ Play now</span></a>
+          <a class="card" href="car-simulator/car-simulator.html" target="_blank" rel="noopener noreferrer"><div><span class="tag">Driving</span><h3>Car Simulator</h3><p>Drive through the small town of Lipová with traffic, weather and a day–night cycle.</p><p><strong>Quick start:</strong> T switches to the automatic gearbox, E starts the engine, F selects Drive, R selects Reverse (when stopped), W/S accelerate and brake, A/D steer. F1 lists every control.</p></div><span class="play">▶ Play now</span></a>
+          <a class="card" href="street-simulator/street-simulator.html" target="_blank" rel="noopener noreferrer"><div><span class="tag">City</span><h3>Street Simulator</h3><p>A realistic, procedurally generated city street with traffic, pedestrians, shadows and reflections, rendered with CNA's extended graphics layer.</p><p><strong>Note:</strong> it builds the street in your browser, so the first start takes about a minute. WASD moves, mouse looks, 1–8 jump between viewpoints, F1 toggles the overlay.</p></div><span class="play">▶ Play now</span></a>
+          <a class="card" href="room-simulator/room-simulator.html" target="_blank" rel="noopener noreferrer"><div><span class="tag">Interior</span><h3>Room Simulator</h3><p>Explore a furnished 3D living room with changing daylight and weather, rendered by the original C++ application through WebGL2.</p><p><strong>Controls:</strong> WASD moves, arrow keys look around, 1–8 switch viewpoints, and F1 shows the controls. The first load downloads about 128 MiB of models.</p></div><span class="play">▶ Play now</span></a>
+        </div>
+      </section>
+
+      <section id="apps" aria-labelledby="apps-title">
+        <div class="section-head"><h2 id="apps-title">Applications</h2><span class="count">4 titles</span></div>
+        <p class="section-intro">Tools and interactive showcases you can use right here.</p>
+        <div class="grid">
+          <a class="card" href="mesh-craft/MeshCraft.html" target="_blank" rel="noopener noreferrer"><div><span class="tag">3D tool</span><h3>Mesh Craft</h3><p>Build and inspect 3D meshes — open OBJ or glTF models, tweak them and download the result.</p></div><span class="play">▶ Launch</span></a>
+          <a class="card" href="cna-examples/cna_examples.html" target="_blank" rel="noopener noreferrer"><div><span class="tag">Showcase</span><h3>CNA Examples</h3><p>A collection of interactive examples and experiments built with libcna.</p></div><span class="play">▶ Launch</span></a>
+          <a class="card" href="cna_demo_2d/cna_demo_2d.html" target="_blank" rel="noopener noreferrer"><div><span class="tag">Showcase</span><h3>2D Graphics</h3><p>Two-dimensional rendering with libcna, running live in your browser.</p></div><span class="play">▶ Launch</span></a>
+          <a class="card" href="cna_demo_house_3d/cna_house3d_demo.html" target="_blank" rel="noopener noreferrer"><div><span class="tag">Showcase</span><h3>3D House</h3><p>Look around a 3D house scene right in your browser.</p></div><span class="play">▶ Launch</span></a>
+        </div>
+      </section>
+
+      <p class="note">Every title opens in a new tab and runs entirely in your browser using WebAssembly and WebGL. The first start may take a moment while the larger titles download their data.</p>
+      <footer>Built with libcna</footer>
     </main>
   </body>
 </html>
