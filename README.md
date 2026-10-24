@@ -18,6 +18,7 @@ samostatný WebAssembly build; úvodní stránka slouží jako jejich rozcestní
 - **Car Simulator** – `car-simulator/car-simulator.html`
 - **Street Simulator** – `street-simulator/street-simulator.html`
 - **Room Simulator** – `room-simulator/room-simulator.html`
+- **Island Simulator** – `island-simulator/island-simulator.html`
 
 ## Aplikace
 
