@@ -21,6 +21,7 @@ samostatný WebAssembly build; úvodní stránka slouží jako jejich rozcestní
 - **Island Simulator** – `island-simulator/island-simulator.html`
 - **Backrooms Simulator** – `backrooms-simulator/index.html`
 - **School Simulator** – `school-simulator/index.html`
+- **Train Simulator** – `train-simulator/train-simulator.html`
 
 ## Aplikace
 
