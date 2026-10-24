@@ -1,4 +1,4 @@
-# Demos libcna.com
+# play.libcna.com
 
 Statický web s ukázkami postavenými nad **libcna**. Každá ukázka je samostatný
 WebAssembly build; úvodní stránka slouží jako jejich rozcestník.
